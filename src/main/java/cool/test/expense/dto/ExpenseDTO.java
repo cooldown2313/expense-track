@@ -1,10 +1,8 @@
 package cool.test.expense.dto;
 
-import cool.test.expense.entity.Account;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.sql.Date;

@@ -67,10 +67,10 @@ public class AccountServiceImpl implements AccountService {
 
             account = this.accountDao.save(account);
 
-            log.debug("account test is " + account.getUserId());
-
-            accountDTO = modelMapper.map(account, AccountDTO.class);
-
+            if (account != null) {
+                log.debug("account test is " + account.getUserId());
+                accountDTO = modelMapper.map(account, AccountDTO.class);
+            }
         } catch (JsonProcessingException e) {
             log.error("saveAccount exception is ", e);
         }

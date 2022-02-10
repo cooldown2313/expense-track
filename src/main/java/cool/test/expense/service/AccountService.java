@@ -3,7 +3,6 @@ package cool.test.expense.service;
 import cool.test.expense.dto.AccountDTO;
 import cool.test.expense.dto.LoginDTO;
 import cool.test.expense.dto.LoginResponse;
-import cool.test.expense.entity.Account;
 
 public interface AccountService {
 
