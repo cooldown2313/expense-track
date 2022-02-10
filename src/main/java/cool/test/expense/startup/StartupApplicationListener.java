@@ -20,18 +20,32 @@ public class StartupApplicationListener implements ApplicationListener<ContextRe
 
     @Override public void onApplicationEvent(ContextRefreshedEvent event) {
 
+        this.createAccount("tatleong","Tat Leong");
+        this.updatePassword("tatleong", "Zaq12wsx!");
+
+        this.createAccount("steve","Steve");
+        this.updatePassword("steve", "Zaq12wsx!");
+
+        this.createAccount("ray","Ray");
+        this.updatePassword("ray", "Zaq12wsx!");
+
+        log.info("Expense-tracker startup successfully");
+    }
+
+
+    private void createAccount(String userId, String fullName) {
         AccountDTO dummyAccount = new AccountDTO();
-        dummyAccount.setUserId("tatleong");
-        dummyAccount.setFullName("Tat Leong");
+        dummyAccount.setUserId(userId);
+        dummyAccount.setFullName(fullName);
         dummyAccount.setCreatedAt(new Date(System.currentTimeMillis()));
 
         accountService.saveAccount(dummyAccount);
+    }
 
+    private void updatePassword(String userId, String password) {
         LoginDTO loginDTO = new LoginDTO();
-        loginDTO.setUserId(dummyAccount.getUserId());
-        loginDTO.setPassword("Zaq12wsx!");
+        loginDTO.setUserId(userId);
+        loginDTO.setPassword(password);
         accountService.updatePassword(loginDTO);
-
-        log.info("Expense-tracker startup successfully");
     }
 }

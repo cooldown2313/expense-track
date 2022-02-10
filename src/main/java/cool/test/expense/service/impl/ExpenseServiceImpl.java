@@ -62,7 +62,7 @@ public class ExpenseServiceImpl implements ExpenseService {
                 String userId = (String) auth.getPrincipal();
                 Optional<Account> found = this.accountDao.findById(userId);
 
-                if (found != null) {
+                if (found != null && !found.isEmpty()) {
                     account = found.get();
                 }
             }
@@ -108,7 +108,7 @@ public class ExpenseServiceImpl implements ExpenseService {
             String userId = (String) auth.getPrincipal();
             Optional<Account> found = this.accountDao.findById(userId);
 
-            if (found != null) {
+            if (found != null && !found.isEmpty()) {
                 account = found.get();
             }
         }
@@ -142,7 +142,7 @@ public class ExpenseServiceImpl implements ExpenseService {
             String userId = (String) auth.getPrincipal();
             Optional<Account> found = this.accountDao.findById(userId);
 
-            if (found != null) {
+            if (found != null && !found.isEmpty()) {
                 account = found.get();
 
                 List<Expense> expenses = this.expenseDao.findExpensesByUserId(account.getUserId());
@@ -169,7 +169,7 @@ public class ExpenseServiceImpl implements ExpenseService {
             String userId = (String) auth.getPrincipal();
             Optional<Account> found = this.accountDao.findById(userId);
 
-            if (found != null) {
+            if (found != null && !found.isEmpty()) {
                 account = found.get();
 
                 Expense expense = this.expenseDao.findExpense(account.getUserId(), expenseId);

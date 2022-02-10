@@ -102,7 +102,7 @@ public class AccountServiceImpl implements AccountService {
 
             Optional<Account> found = this.accountDao.findById(loginDTO.getUserId());
 
-            if (found != null) {
+            if (found != null && !found.isEmpty()) {
                 Account account = found.get();
                 account.setPassword(StringUtils.hashPassword(loginDTO.getPassword(), PWD_SEED));
 
@@ -133,7 +133,7 @@ public class AccountServiceImpl implements AccountService {
             log.debug("userId is " + userId);
 
             Optional<Account> found = this.accountDao.findById(userId);
-            Account account = found!=null ? found.get(): null;
+            Account account = found != null && !found.isEmpty() ? found.get(): null;
 
             accountDTO = modelMapper.map(account, AccountDTO.class);
 
@@ -166,7 +166,7 @@ public class AccountServiceImpl implements AccountService {
             log.debug("jsonString test is " + jsonString);
 
             Optional<Account> found = this.accountDao.findById(loginDTO.getUserId());
-            if (found!=null) {
+            if (found != null && !found.isEmpty()) {
                 Account account = found.get();
                 if (StringUtils.hashPassword(loginDTO.getPassword(), PWD_SEED).equals(account.getPassword())) {
                     loginResponse = new LoginResponse();
