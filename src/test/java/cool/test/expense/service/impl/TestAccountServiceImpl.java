@@ -13,8 +13,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import javax.validation.Validator;
 import java.sql.Date;
 
@@ -38,9 +36,9 @@ public class TestAccountServiceImpl {
     }
 
     @Test
-    public void createEmployeeTest()
+    public void saveAccountTest()
     {
-        String userId = null;
+        String userId = "tatleong";
         String fullName = "Tat Leong";
 
         AccountDTO dummyAccount = new AccountDTO();
@@ -48,9 +46,17 @@ public class TestAccountServiceImpl {
         dummyAccount.setFullName(fullName);
         dummyAccount.setCreatedAt(new Date(System.currentTimeMillis()));
 
-        accountService.saveAccount(dummyAccount);
-
+        dummyAccount = accountService.saveAccount(dummyAccount);
         Account account = modelMapper.map(dummyAccount, Account.class);
+
         verify(accountDao, times(1)).save(account);
+    }
+
+    @Test
+    public void getAccountTest()
+    {
+        String userId = "tatleong";
+        AccountDTO accountDTO = accountService.getAccount(userId);
+        verify(accountDao, times(1)).findById(userId);
     }
 }
